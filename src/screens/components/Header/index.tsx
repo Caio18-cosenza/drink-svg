@@ -9,37 +9,38 @@ import { styles } from './styles';
 type Props = {
   ml: number;
   percent: number;
-}
+};
 
 export function Header({ ml, percent }: Props) {
   return (
     <View style={styles.header}>
       <View>
-        <Text style={styles.ml}>
-          {ml.toFixed(2)}ml
-        </Text>
+        <Text style={styles.ml}>{ml.toFixed(2)}ml</Text>
 
         <Text style={styles.label}>
-          beber água diariamente é fundamental para o bom funcionamento do nosso organismo.
+          beber água diariamente é fundamental para o bom funcionamento do nosso
+          organismo.
         </Text>
       </View>
 
       <View style={styles.cups}>
-        {
-          cups.map(value => (
-            <MaterialCommunityIcons
-              key={String(value)}
-              name="cup"
-              size={32}
-              color={percent > value ? theme.colors.blue90 : theme.colors.gray80}
-            />
-          ))
-        }
+        {cups.map((value) => (
+          <MaterialCommunityIcons
+            key={String(value)}
+            name='cup'
+            size={32}
+            color={
+              percent === 0
+                ? theme.colors.gray80
+                : percent >= value || percent === 1000
+                ? theme.colors.blue90
+                : theme.colors.gray80
+            }
+          />
+        ))}
       </View>
 
-      <Text style={styles.percentage}>
-        {percent}%
-      </Text>
+      <Text style={styles.percentage}>{percent}%</Text>
     </View>
   );
 }
